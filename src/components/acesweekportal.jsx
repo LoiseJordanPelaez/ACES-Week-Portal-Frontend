@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
-import "./AcesWeekPortal.css";
+import "./acesweekportal.css";
 
 class FormManager {
     constructor(data) {
