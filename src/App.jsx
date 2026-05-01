@@ -1,6 +1,6 @@
 // App.jsx
 import React from "react";
-import AcesWeekPortal from "./components/AcesWeekPortal";
+import AcesWeekPortal from "./components/acesweekportal";
 
 function App(){
   return(
