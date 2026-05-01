@@ -158,7 +158,7 @@ const AcesWeekPortal = () => {
                 <h1 className="aces-title">ACES WEEK 2026</h1>
                 <p className="aces-subtitle">THRONE OF CHAMPIONS PORTAL</p>
                 <button className="aces-btn" onClick={() => setView("register")}>PARTICIPANT REGISTRATION</button>
-                <button className="aces-btn aces-btn-outline" onClick={() => setView("admin")}>ADMIN DASHBOARD</button>
+                <button className="aces-btn aces-btn-outline" onClick={() => setView("admin")}>PLAYER DASHBOARD</button>
             </div>
         );
     }
