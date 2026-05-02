@@ -152,6 +152,45 @@ const AcesWeekPortal = () => {
         }
     };
 
+    // --- BACKEND CONNECTION LOGIC ---
+    const handleFinalSubmit = async () => {
+        const validationErrors = manager.validate(3);
+        if (validationErrors.length > 0) {
+            window.alert(validationErrors.join("\n"));
+            return;
+        }
+
+        try {
+            const response = await fetch("https://aces-registration-portal-backend.onrender.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                window.alert("✅ REGISTRATION SUBMITTED SUCCESSFULLY!");
+                setView("home");
+                setStep(1);
+                // Reset form data after successful submission
+                setFormData({
+                    mainCategory: "", subCategory: "", groupType: "",
+                    name: "", section: "", team: "", contact: "", gmail: "",
+                    role: "", position: "", jersey: "", matchType: "", ign: "", 
+                    esportsRole: "", bandName: "", instrument: "", artType: "", 
+                    quizCategory: "", essayLanguage: "", submissionLink: ""
+                });
+            } else {
+                const errorData = await response.json();
+                window.alert(`❌ SUBMISSION FAILED: ${errorData.message || "Unknown error occurred"}`);
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            window.alert("❌ COULD NOT CONNECT TO THE SERVER. PLEASE CHECK YOUR INTERNET OR BACKEND STATUS.");
+        }
+    };
+
     if (view === "home") {
         return (
             <div className="aces-container">
@@ -170,8 +209,8 @@ const AcesWeekPortal = () => {
                 <table className="admin-table">
                     <thead><tr><th>NAME</th><th>SECTION</th><th>CATEGORY</th><th>STATUS</th></tr></thead>
                     <tbody>
-                        <tr><td>JHENA JANE PAPAG</td><td>BSCPE 2-1</td><td>ACADEMICS - QUIZ BEE</td><td style={{color: '#4CAF50'}}>VERIFIED</td></tr>
-                        <tr><td>AXL KURT BALUYOT</td><td>BSCPE 2-1</td><td>ESPORTS - MLBB</td><td style={{color: '#ff9f00'}}>PENDING</td></tr>
+                        <tr><td>JHENA JANE PAPAG</td><td>BSCPE 2-1</td><td>ACADEMICS - QUIZ BEE</td><td className="status-verified">VERIFIED</td></tr>
+                        <tr><td>AXL KURT BALUYOT</td><td>BSCPE 2-1</td><td>ESPORTS - MLBB</td><td className="status-pending">PENDING</td></tr>
                     </tbody>
                 </table>
                 <button className="aces-btn aces-btn-outline" style={{marginTop: '30px'}} onClick={() => setView("home")}>RETURN HOME</button>
@@ -294,7 +333,7 @@ const AcesWeekPortal = () => {
                     <hr className="aces-divider" />
                     <div className="aces-btn-group">
                         <button className="aces-btn aces-btn-outline" onClick={() => setStep(2)}>BACK</button>
-                        <button className="aces-btn" onClick={() => { window.alert("REGISTRATION SUBMITTED!"); setView("home"); }}>FINAL SUBMIT</button>
+                        <button className="aces-btn" onClick={handleFinalSubmit}>FINAL SUBMIT</button>
                     </div>
                 </div>
             )}
