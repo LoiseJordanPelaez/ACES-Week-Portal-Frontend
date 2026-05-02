@@ -1,4 +1,4 @@
-/* --- AcesWeekPortal.css REFINED --- */
+/* --- AcesWeekPortal.css FINAL --- */
 
 @font-face {
     font-family: 'Doctor Glitch';
@@ -8,11 +8,11 @@
 
 :root {
     --primary-red: #800000;
-    --dark-bg: rgba(19, 19, 19, 0.85);
-    --input-bg: rgba(42, 43, 44, 0.8);
+    --dark-bg: rgba(13, 13, 13, 0.82); /* Deep glass for container */
+    --input-glass: rgba(255, 255, 255, 0.1); /* Transparent input effect */
     --text-main: #ffffff;
-    --text-dim: #9f9f9f;
-    --transition-smooth: all 0.3s ease;
+    --text-dim: #b0b0b0;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -20,84 +20,102 @@ body {
     padding: 0;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* Prevents background from scrolling */
     background: #000 url('../assets/main.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* 1. Left-Aligned Floating Glass Container */
+/* 1. Glass Container with Left-Alignment */
 .aces-container {
     position: absolute;
-    left: 80px; 
+    left: 100px; /* Space from screen edge */
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
     
     width: 90%;
-    max-width: 550px; /* Tightened width slightly for better proportion */
-    padding: 40px;
+    max-width: 650px; /* Updated size */
+    padding: 45px 40px 45px 60px; /* Increased left padding (60px) */
     box-sizing: border-box;
     
-    background-color: var(--dark-bg); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
+    background-color: var(--dark-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     
-    border-radius: 12px;
-    border-top: 4px solid var(--primary-red); 
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-red); /* Changed to side-accent for style */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
     color: var(--text-main);
-    transition: var(--transition-smooth);
+    
+    /* --- INTERNAL SCROLL --- */
+    max-height: 85vh; 
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-red) transparent;
 }
 
-.aces-container:hover {
-    background-color: rgba(19, 19, 19, 0.95);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+/* Custom Scrollbar for Chrome/Safari */
+.aces-container::-webkit-scrollbar {
+    width: 5px;
+}
+.aces-container::-webkit-scrollbar-thumb {
+    background: var(--primary-red);
+    border-radius: 10px;
 }
 
-/* 2. Typography - Fixed Sizing & Margins */
+/* 2. Typography */
 .aces-title {
-    text-align: center;
+    text-align: left; /* Aligned left to match container padding */
     color: var(--text-main);
-    /* Reduced from 60px to 2.8rem (~45px) to prevent overflow */
-    font-size: 2.8rem; 
+    font-size: 2.5rem;
     font-family: 'Doctor Glitch', sans-serif;
-    margin: 10px 0 20px 0; /* Balanced margins */
+    margin: 0 0 10px 0;
     text-transform: uppercase;
-    letter-spacing: 2px; /* Reduced slightly for readability */
-    line-height: 1.1;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 3px;
 }
 
 .aces-subtitle {
-    text-align: center;
-    color: var(--text-dim); 
-    font-size: 0.95rem;
-    margin-bottom: 30px;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    text-align: left;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 35px;
+    letter-spacing: 1px;
 }
 
-/* 3. Modern Glass Inputs */
+/* 3. The Transparent Input Effect (Matching your image) */
 .aces-input {
-    display: block; 
-    width: 100%;    
-    padding: 14px 18px;
-    margin-bottom: 15px; 
-    box-sizing: border-box; 
-    background-color: var(--input-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    
+    /* Glass Effect */
+    background: var(--input-glass);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; /* Rounded like your image */
     color: var(--text-main);
-    border-radius: 8px;
     font-size: 1rem;
     transition: var(--transition-smooth);
 }
 
 .aces-input:focus {
     outline: none;
+    background: rgba(255, 255, 255, 0.15);
     border-color: var(--primary-red);
-    background-color: #131313;
-    box-shadow: 0 0 10px rgba(128, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
+}
+
+/* Fix for Browser Autofill (Prevents solid background when selecting suggestions) */
+.aces-input:-webkit-autofill,
+.aces-input:-webkit-autofill:hover, 
+.aces-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-main);
+    -webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset; /* Matches dark theme */
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* 4. Buttons */
@@ -105,55 +123,29 @@ body {
     width: 100%;
     padding: 16px;
     background: linear-gradient(135deg, #800000 0%, #4a0808 100%);
-    color: var(--text-main);
+    color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
-    margin-bottom: 12px;
-    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+    transition: var(--transition-smooth);
 }
 
 .aces-btn:hover {
     filter: brightness(1.2);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(128, 0, 0, 0.5);
 }
 
-.aces-btn-outline {
-    background: transparent;
-    border: 1px solid #444;
-}
-
-.aces-btn-outline:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-dim);
-}
-
-/* 5. Admin Table */
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.admin-table th, .admin-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #333;
-}
-
-.admin-table th {
-    color: var(--text-dim);
-    font-size: 0.75rem;
+/* 5. Utility Classes */
+.aces-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-red);
+    margin-bottom: 5px;
     text-transform: uppercase;
-}
-
-/* Global Reset */
-#root, .App {
-    border: none !important;
-    outline: none !important;
+    font-weight: bold;
 }
