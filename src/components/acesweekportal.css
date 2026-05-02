@@ -1,161 +1,158 @@
-/* --- AcesWeekPortal.css UPDATED --- */
+/* --- AcesWeekPortal.css REFINED --- */
 
 @font-face {
     font-family: 'Doctor Glitch';
     src: url('../assets/DoctorGlitch.ttf') format('truetype');
+    font-display: swap;
+}
+
+:root {
+    --primary-red: #800000;
+    --dark-bg: rgba(19, 19, 19, 0.85);
+    --input-bg: rgba(42, 43, 44, 0.8);
+    --text-main: #ffffff;
+    --text-dim: #9f9f9f;
+    --transition-smooth: all 0.3s ease;
 }
 
 body {
-    background-image: url('../assets/main.png');
-    background-size: cover;        
-    background-position: center;   
-    background-attachment: fixed;  
-    background-repeat: no-repeat;
-    background-color: #000000;
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    position: relative;
-    border: none !important;
-    outline: none !important;
+    background: #000 url('../assets/main.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* 1. Left-Aligned Floating Glass Container */
 .aces-container {
     position: absolute;
-    left: 100px; 
+    left: 80px; 
     top: 50%;
     transform: translateY(-50%); 
     
-    /* Adjusted Size */
-    width: 90%; /* Responsive fallback */
-    max-width: 600px; /* Forced width to 600px */
-    padding: 45px 35px;
+    width: 90%;
+    max-width: 550px; /* Tightened width slightly for better proportion */
+    padding: 40px;
+    box-sizing: border-box;
     
-    /* Adjusted Transparency: Changed from 0.35 to 0.85 for more opacity */
-    background-color: rgba(19, 19, 19, 0.85); 
+    background-color: var(--dark-bg); 
     backdrop-filter: blur(15px); 
     -webkit-backdrop-filter: blur(15px);
     
     border-radius: 12px;
-    border: none !important; 
-    
-    /* Top accent */
-    border-top: 4px solid #800000; 
-    
-    /* Soft shadow */
-    box-shadow: 0 25px 50px rgba(27, 3, 3, 0.9);
-    color: #ffffff;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 4px solid var(--primary-red); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    color: var(--text-main);
+    transition: var(--transition-smooth);
 }
 
 .aces-container:hover {
-    /* Slightly darker on hover */
     background-color: rgba(19, 19, 19, 0.95);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
 }
 
-/* 2. Typography */
+/* 2. Typography - Fixed Sizing & Margins */
 .aces-title {
     text-align: center;
-    color: #ffffff;
-    font-size: 60px;
+    color: var(--text-main);
+    /* Reduced from 60px to 2.8rem (~45px) to prevent overflow */
+    font-size: 2.8rem; 
     font-family: 'Doctor Glitch', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 10px 0 20px 0; /* Balanced margins */
     text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px; /* Reduced slightly for readability */
+    line-height: 1.1;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .aces-subtitle {
     text-align: center;
-    color: #9f9f9f; 
-    font-size: 19px;
-    margin-bottom: 35px;
+    color: var(--text-dim); 
+    font-size: 0.95rem;
+    margin-bottom: 30px;
     font-style: italic;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 }
 
 /* 3. Modern Glass Inputs */
 .aces-input {
     display: block; 
     width: 100%;    
-    padding: 16px;
-    margin-bottom: 18px; 
+    padding: 14px 18px;
+    margin-bottom: 15px; 
     box-sizing: border-box; 
-    background-color: rgba(42, 43, 44, 0.8); /* Higher opacity input */
-    border: 1px solid rgba(112, 112, 112, 0.3); 
-    color: #ffffff;
-    font-weight: bold;
+    background-color: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    color: var(--text-main);
     border-radius: 8px;
-    font-size: 18px;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
 }
 
 .aces-input:focus {
     outline: none;
-    border-color: #800000;
+    border-color: var(--primary-red);
     background-color: #131313;
-    box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(128, 0, 0, 0.2);
 }
 
 /* 4. Buttons */
 .aces-btn {
-    display: block;
     width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, #800000 0%, #520a0a 100%);
-    color: #ffffff;
+    padding: 16px;
+    background: linear-gradient(135deg, #800000 0%, #4a0808 100%);
+    color: var(--text-main);
     border: none;
     border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     cursor: pointer;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
+    margin-bottom: 12px;
+    transition: all 0.2s ease-in-out;
 }
 
 .aces-btn:hover {
-    background: #800000;
-    transform: scale(1.03);
-    box-shadow: 0 0 25px rgba(128, 0, 0, 0.4);
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
 }
 
 .aces-btn-outline {
     background: transparent;
-    border: 1px solid #707070;
-    color: #ffffff;
+    border: 1px solid #444;
 }
 
 .aces-btn-outline:hover {
     background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-dim);
 }
 
 /* 5. Admin Table */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .admin-table th, .admin-table td {
-    padding: 14px;
+    padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #575757;
+    border-bottom: 1px solid #333;
 }
 
 .admin-table th {
-    color: #9f9f9f;
-    font-size: 12px;
+    color: var(--text-dim);
+    font-size: 0.75rem;
     text-transform: uppercase;
 }
 
-/* Global Root Cleanup */
+/* Global Reset */
 #root, .App {
     border: none !important;
     outline: none !important;
