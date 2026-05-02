@@ -1,4 +1,4 @@
-/* --- AcesWeekPortal.css REFINED --- */
+/* --- AcesWeekPortal.css REFINED & CLEANED --- */
 
 @font-face {
     font-family: 'Doctor Glitch';
@@ -8,31 +8,48 @@
 
 :root {
     --primary-red: #800000;
+    --primary-gradient: linear-gradient(135deg, #800000 0%, #4a0808 100%);
     --dark-bg: rgba(19, 19, 19, 0.85);
-    /* Changed input-bg to a very transparent white for the glass effect */
     --input-bg: rgba(255, 255, 255, 0.05); 
     --text-main: #ffffff;
     --text-dim: #9f9f9f;
     --transition-smooth: all 0.3s ease;
 }
 
-body {
+/* 1. Global & Scrollbar Reset */
+html, body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    min-height: 100vh;
+    width: 100%;
+    /* Standard Scrollbar on the right of the webpage */
+    overflow-y: auto;
+    overflow-x: hidden;
     background: #000 url('../assets/main.png') no-repeat center center fixed;
     background-size: cover;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
 }
 
-/* 1. Left-Aligned Floating Glass Container */
+/* Custom Webpage Scrollbar */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+body::-webkit-scrollbar-thumb {
+    background: var(--primary-red);
+    border-radius: 4px;
+}
+
+/* 2. Left-Aligned Floating Container */
 .aces-container {
-    position: absolute;
-    left: 130px; 
-    top: 50%;
-    transform: translateY(-50%); 
+    position: relative;
+    /* Keeps your 130px left offset */
+    margin-left: 130px; 
+    /* Vertically centers on large screens, adds padding on small */
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     
     width: 90%;
     max-width: 550px;
@@ -48,56 +65,35 @@ body {
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
     color: var(--text-main);
     transition: var(--transition-smooth);
-
-    /* --- ADDED SCROLLBAR LOGIC --- */
-    max-height: 85vh; /* Prevents the box from growing taller than the screen */
-    overflow-y: auto; /* Enables vertical scrolling */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: var(--primary-red) rgba(0, 0, 0, 0.2); /* Firefox */
 }
 
 .aces-container:hover {
     background-color: rgba(19, 19, 19, 0.95);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
 }
 
-/* Custom Scrollbar for Chrome/Safari/Edge */
-.aces-container::-webkit-scrollbar {
-    width: 6px;
-}
-.aces-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-}
-.aces-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary-red);
-    border-radius: 8px;
-}
-
-/* 2. Typography - Fixed Sizing & Margins */
+/* 3. Typography */
 .aces-title {
     text-align: center;
-    color: var(--text-main);
     font-size: 2.8rem; 
     font-family: 'Doctor Glitch', sans-serif;
-    margin: 10px 0 20px 0; 
+    margin: 0 0 10px 0; 
     text-transform: uppercase;
     letter-spacing: 2px; 
-    line-height: 1.1;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .aces-subtitle {
     text-align: center;
     color: var(--text-dim); 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 30px;
     font-style: italic;
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
 
-/* 3. Modern Glass Inputs */
+/* 4. Modern Glass Inputs */
 .aces-input {
     display: block; 
     width: 100%;    
@@ -105,54 +101,39 @@ body {
     margin-bottom: 15px; 
     box-sizing: border-box; 
     color: var(--text-main);
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: var(--transition-smooth);
-    
-    /* --- ADDED INPUT GLASS EFFECT --- */
     background-color: var(--input-bg);
     border: 1px solid rgba(255, 255, 255, 0.15); 
-    backdrop-filter: blur(8px); /* Blurs the background specifically behind the input */
-    -webkit-backdrop-filter: blur(8px);
+    border-radius: 8px;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-smooth);
 }
 
 .aces-input:focus {
     outline: none;
     border-color: var(--primary-red);
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly brighter when clicking inside */
+    background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 10px rgba(128, 0, 0, 0.3);
 }
 
-/* Prevents the ugly solid background when the browser autofills forms */
-.aces-input:-webkit-autofill,
-.aces-input:-webkit-autofill:hover, 
-.aces-input:-webkit-autofill:focus, 
-.aces-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.5) inset !important;
-    -webkit-text-fill-color: black !important;
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-/* 4. Buttons */
+/* 5. Buttons */
 .aces-btn {
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, #800000 0%, #4a0808 100%);
+    background: var(--primary-gradient);
     color: var(--text-main);
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
     margin-bottom: 12px;
-    transition: all 0.2s ease-in-out;
+    transition: var(--transition-smooth);
 }
 
 .aces-btn:hover {
     filter: brightness(1.2);
-    transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
 }
 
@@ -166,7 +147,7 @@ body {
     border-color: var(--text-dim);
 }
 
-/* 5. Admin Table */
+/* 6. Admin Table */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
@@ -185,7 +166,12 @@ body {
     text-transform: uppercase;
 }
 
-/* Global Reset */
+/* Utils */
+.aces-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.5) inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
 #root, .App {
     border: none !important;
     outline: none !important;
