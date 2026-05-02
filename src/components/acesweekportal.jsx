@@ -166,12 +166,12 @@ const AcesWeekPortal = () => {
     if (view === "admin") {
         return (
             <div className="aces-container aces-admin">
-                <h1 className="aces-title">ADMIN DASHBOARD</h1>
+                <h1 className="aces-title">PLAYER DASHBOARD</h1>
                 <table className="admin-table">
                     <thead><tr><th>NAME</th><th>SECTION</th><th>CATEGORY</th><th>STATUS</th></tr></thead>
                     <tbody>
-                        <tr><td>AXL KURT BALUYOT</td><td>BSCPE 2-1</td><td>ESPORTS - MLBB</td><td style={{color: '#4CAF50'}}>VERIFIED</td></tr>
-                        <tr><td>JHENA JANE PAPAG</td><td>BSCPE 2-1</td><td>ACADEMICS - QUIZ BEE</td><td style={{color: '#ff9f00'}}>PENDING</td></tr>
+                        <tr><td>JHENA JANE PAPAG</td><td>BSCPE 2-1</td><td>ACADEMICS - QUIZ BEE</td><td style={{color: '#4CAF50'}}>VERIFIED</td></tr>
+                        <tr><td>AXL KURT BALUYOT</td><td>BSCPE 2-1</td><td>ESPORTS - MLBB</td><td style={{color: '#ff9f00'}}>PENDING</td></tr>
                     </tbody>
                 </table>
                 <button className="aces-btn aces-btn-outline" style={{marginTop: '30px'}} onClick={() => setView("home")}>RETURN HOME</button>
